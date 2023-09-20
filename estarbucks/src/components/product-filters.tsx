@@ -1,6 +1,7 @@
 "use client";
 
-import { TextInput, Checkbox, Group, Button } from '@mantine/core';
+import { Button } from 'tp-kit/components';
+import { TextInput, Checkbox, Group } from '@mantine/core';
 import { useForm } from '@mantine/form';
 import { FormEventHandler, useMemo } from 'react';
 import { ProductsCategoryData } from "tp-kit/types";
@@ -30,7 +31,7 @@ export function ProductFilters({categories, onChange} : Props) {
                     {categories.map((category,index) => <Checkbox key={index} value={category.slug} label={category.name}></Checkbox>)}
                     </Group>
                 </Checkbox.Group>
-                <Button variant="ghost" type="submit">Filter</Button>
+                <Button type="submit">Filter</Button>
             </form>
         </main>
     )
