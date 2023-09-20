@@ -2,13 +2,13 @@
 
 import { TextInput, Checkbox, Group, Button } from '@mantine/core';
 import { useForm } from '@mantine/form';
-import { FormEventHandler } from 'react';
+import { FormEventHandler, useMemo } from 'react';
 import { ProductsCategoryData } from "tp-kit/types";
 import { ProductFilterResult } from '@/types';
 
-type Props = {categories: ProductsCategoryData[], onChange ?: (param : ProductFilterResult) => void}
+type Props = {categories: ProductsCategoryData[], onChange : (param : ProductFilterResult) => void}
 
-export default function ProductFilters({categories, onChange} : Props) {
+export function ProductFilters({categories, onChange} : Props) {
 
     const form = useForm({
         initialValues: {
@@ -17,14 +17,20 @@ export default function ProductFilters({categories, onChange} : Props) {
         }
     })
 
+    function handleFilter(values : ProductFilterResult) {
+        onChange(values)
+    }
+
     return (
         <main>
-            <form onSubmit={form.onSubmit((values) => console.log(values))}>
-                <TextInput {...form.getInputProps("search")}></TextInput>
+            <form onSubmit={form.onSubmit((values) => handleFilter(values))}>
+                <TextInput id="search" {...form.getInputProps("search")}></TextInput>
                 <Checkbox.Group {...form.getInputProps("categoriesSlug")}>
-                    {categories.map((category) => <Checkbox label={category.name}></Checkbox>)}
+                    <Group>
+                    {categories.map((category,index) => <Checkbox key={index} value={category.slug} label={category.name}></Checkbox>)}
+                    </Group>
                 </Checkbox.Group>
-                <Button type="submit">Filter</Button>
+                <Button variant="ghost" type="submit">Filter</Button>
             </form>
         </main>
     )
