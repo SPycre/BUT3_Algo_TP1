@@ -9,7 +9,6 @@ export function filterProducts(
 
   const filteredResult : ProductsCategoryData[] = []
 
-  console.log(filters)
   if (filters.categoriesSlug.length > 0) {
 
     categories.map(category => {
@@ -23,7 +22,7 @@ export function filterProducts(
             return product.name.toLowerCase().includes(pattern.toLowerCase())
           })
         }
-        
+
         filteredResult.push(output)
 
       }
