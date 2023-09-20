@@ -26,10 +26,8 @@ export function ProductFilters({categories, onChange} : Props) {
         <main>
             <form onSubmit={form.onSubmit((values) => handleFilter(values))}>
                 <TextInput id="search" {...form.getInputProps("search")}></TextInput>
-                <Checkbox.Group {...form.getInputProps("categoriesSlug")}>
-                    <Group>
+                <Checkbox.Group className='flex flex-col gap-3' {...form.getInputProps("categoriesSlug")}>
                     {categories.map((category,index) => <Checkbox key={index} value={category.slug} label={category.name}></Checkbox>)}
-                    </Group>
                 </Checkbox.Group>
                 <Button type="submit">Filter</Button>
             </form>

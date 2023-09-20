@@ -6,7 +6,22 @@ import { BreadCrumbs, Button, Heading, ProductCardLayout, ProductGridLayout, Sec
 import { PRODUCTS_CATEGORY_DATA } from "tp-kit/data";
 const categories = PRODUCTS_CATEGORY_DATA;
 
-export default function Home() {
+type NextPageProps<T = Record<string, string>> = {
+  params: T,
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+type Props = {
+  categorySlug : string
+}
+
+export default function Home({params} : NextPageProps<Props>) {
+  let currentcategories = categories.filter(category => {
+    return category.slug == params.categorySlug
+  })
+
+  if (!currentcategories.length) notFound();
+
   return ( 
     <main>
       <SectionContainer>
@@ -15,10 +30,13 @@ export default function Home() {
             {
               label: 'Accueil',
               url: '#'
-            },
+            },{
+              label: currentcategories[0].name,
+              url: '/'+params.categorySlug
+            }
           ]}
         />
-        <ProductList showFilters={true} categories={categories}/>
+        <ProductList showFilters={false} categories={currentcategories}/>
       </SectionContainer>
     </main>
   )
