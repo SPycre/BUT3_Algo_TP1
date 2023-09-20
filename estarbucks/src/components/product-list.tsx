@@ -6,6 +6,7 @@ import { BreadCrumbs, Button, Heading, ProductCardLayout, ProductGridLayout, Sec
 import { useEffect, useMemo, useState } from "react";
 import { ProductFilterResult } from "@/types";
 import { filterProducts } from "@/utiils/filter-products";
+import Link from "next/link";
 
 type Props = {categories : ProductsCategoryData[], showFilters: boolean}
 
@@ -38,7 +39,7 @@ export default function ProductList({categories, showFilters = false} : Props) {
         {showFilters ? <ProductFilters categories={categories} onChange={updateList}/> : ""}
         <div className="flex-1">
         {filtered.map((category,index) => <SectionContainer key={index}>
-            <Heading as="h1" size="md" weight="bold">{category.name + '(' + category.products.length + ')'}</Heading>
+            <Link className="link" href={category.slug}><Heading as="h1" size="md" weight="bold">{category.name + '(' + category.products.length + ')'}</Heading></Link>
             
   
             <ProductGridLayout products={category.products}>

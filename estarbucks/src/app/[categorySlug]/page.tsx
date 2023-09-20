@@ -29,7 +29,7 @@ export default function Home({params} : NextPageProps<Props>) {
           items={[
             {
               label: 'Accueil',
-              url: '#'
+              url: '/'
             },{
               label: currentcategories[0].name,
               url: '/'+params.categorySlug
