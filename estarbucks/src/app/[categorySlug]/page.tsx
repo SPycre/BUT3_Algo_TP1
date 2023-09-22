@@ -16,11 +16,11 @@ type Props = {
 }
 
 export default function Home({params} : NextPageProps<Props>) {
-  let currentcategories = categories.filter(category => {
+  const currentcategories = categories.filter(category => {
     return category.slug == params.categorySlug
-  })
+  })[0]
 
-  if (!currentcategories.length) notFound();
+  if (!currentcategories) notFound();
 
   return ( 
     <main>
@@ -31,13 +31,13 @@ export default function Home({params} : NextPageProps<Props>) {
               label: 'Accueil',
               url: '/'
             },{
-              label: currentcategories[0].name,
+              label: currentcategories.name,
               url: '/'+params.categorySlug
             }
           ]}
         />
-        <ProductList showFilters={false} categories={currentcategories}/>
-      </SectionContainer>
+        </SectionContainer>
+        <ProductList showFilters={false} categories={[currentcategories]}/>
     </main>
   )
 }

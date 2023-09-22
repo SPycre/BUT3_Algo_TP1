@@ -36,7 +36,9 @@ export default function ProductList({categories, showFilters = false} : Props) {
 
     return (
         <div className="flex">
-        {showFilters ? <ProductFilters categories={categories} onChange={updateList}/> : ""}
+        <SectionContainer>
+          {showFilters ? <ProductFilters categories={categories} onChange={updateList}/> : ""}
+        </SectionContainer>
         <div className="flex-1">
         {filtered.map((category,index) => <SectionContainer key={index}>
             <Link className="link" href={category.slug}><Heading as="h1" size="md" weight="bold">{category.name + '(' + category.products.length + ')'}</Heading></Link>

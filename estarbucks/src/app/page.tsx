@@ -18,8 +18,8 @@ export default function Home() {
             },
           ]}
         />
-        <ProductList showFilters={true} categories={categories}/>
       </SectionContainer>
+      <ProductList showFilters={true} categories={categories}/>
     </main>
   )
 }
