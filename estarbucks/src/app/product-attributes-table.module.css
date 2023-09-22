@@ -1,0 +1,8 @@
+
+.table {
+    @apply w-2/4
+}
+
+.table tr {
+    @apply h-20 flex flex-row items-center justify-between
+}

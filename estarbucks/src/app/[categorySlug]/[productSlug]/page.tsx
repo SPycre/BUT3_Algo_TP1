@@ -1,3 +1,4 @@
+import ProductAttributeTable from '@/components/product-attributes-table';
 import { ProductFilters } from '@/components/product-filters';
 import ProductList from '@/components/product-list';
 import Image from 'next/image'
@@ -62,7 +63,15 @@ export default function Home({params} : NextPageProps<Props>) {
                 <Button>Ajouter au panier</Button>
               </section>
             </article>
-            
+          </div>
+          <div className='flex justify-end'>
+            <ProductAttributeTable attributes={[
+              {label:"Intensité", rating:Math.random()*5},
+              {label:"Volupté", rating:Math.random()*5},
+              {label:"Amertume", rating:Math.random()*5},
+              {label:"Onctuosité", rating:Math.random()*5},
+              {label:"Instagramabilité", rating:Math.random()*5},
+            ]}/>
           </div>
         </SectionContainer>
         <SectionContainer>
