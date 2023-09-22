@@ -10,10 +10,10 @@ export default function ProductAttributeTable({attributes} : Props) {
     return (
         <table className={styles.table}>
             <tbody>
-                {attributes.map( (attribute,index) =><> {index == 0 ? "" : <hr/>} <tr>
+                {attributes.map( (attribute,index) =><tr>
                     <td>{attribute.label}</td>
                     <td><ProductRating icon="circle" value={attribute.rating}/></td>
-                </tr>  </>)}
+                </tr>)}
             </tbody>
             
         </table>

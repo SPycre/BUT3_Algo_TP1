@@ -1,6 +1,7 @@
 import ProductAttributeTable from '@/components/product-attributes-table';
 import { ProductFilters } from '@/components/product-filters';
 import ProductList from '@/components/product-list';
+import { Metadata } from 'next';
 import Image from 'next/image'
 import { notFound } from 'next/navigation'
 import { ProductRating } from 'tp-kit/components';
@@ -16,6 +17,25 @@ type NextPageProps<T = Record<string, string>> = {
 type Props = {
   categorySlug : string
   productSlug : string
+}
+
+export async function generateMetadata({params} : NextPageProps<Props>) : Promise<Metadata> {
+  const currentcategory = categories.filter(category => {
+    return category.slug == params.categorySlug
+  })[0]
+
+  if (!currentcategory) notFound();
+
+  const currentproduct = currentcategory.products.filter(product => {
+    return product.slug == params.productSlug
+  })[0]
+
+  if (!currentproduct) notFound();
+
+  return {
+    title: currentproduct.name ,
+    description: currentproduct.desc != "" ? currentproduct.desc : "Succombez pour notre " + currentproduct.name + " et commandez-le sur notre site !"
+  }
 }
 
 export default function Home({params} : NextPageProps<Props>) {
@@ -64,7 +84,7 @@ export default function Home({params} : NextPageProps<Props>) {
               </section>
             </article>
           </div>
-          <div className='flex justify-end'>
+          <div className='flex justify-end max-lg:justify-center'>
             <ProductAttributeTable attributes={[
               {label:"Intensité", rating:Math.random()*5},
               {label:"Volupté", rating:Math.random()*5},
