@@ -5,7 +5,7 @@ import { ProductFilters } from "./product-filters"
 import { BreadCrumbs, Button, Heading, ProductCardLayout, ProductGridLayout, SectionContainer } from 'tp-kit/components';
 import { useEffect, useMemo, useState } from "react";
 import { ProductFilterResult } from "@/types";
-import { filterProducts } from "@/utiils/filter-products";
+import { filterProducts } from "@/utils/filter-products";
 import Link from "next/link";
 
 type Props = {categories : ProductsCategoryData[], showFilters: boolean}
